@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 
 /**
@@ -50,6 +51,7 @@ public class TipAdapter extends RecyclerView.Adapter<TipAdapter.ViewHolder> {
         String strTip = String.format(context.getString(R.string.global_message_tip), element.getTip());
 
         holder.txtContent.setText(strTip);
+        holder.txtDate.setText(element.getDateFormatted());
         holder.setOnItemClickListener(element, onItemClickListener);
     }
 
@@ -71,9 +73,12 @@ public class TipAdapter extends RecyclerView.Adapter<TipAdapter.ViewHolder> {
     public static class ViewHolder extends RecyclerView.ViewHolder{
         @BindView(R.id.txtContent)
         TextView txtContent;
+        @BindView(R.id.txtDate)
+        TextView txtDate;
 
         public ViewHolder(View itemView){
             super(itemView);
+            ButterKnife.bind(this, itemView);
         }
 
         public void setOnItemClickListener(final TipRecord element, final OnItemClickListener onItemClickListener) {
